@@ -11,7 +11,6 @@
             <p class="text-xl mb-8 max-w-2xl">Bộ sưu tập nước hoa đẳng cấp dành riêng cho bạn</p>
             <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-10 rounded-full transition-all duration-300">Khám phá ngay</button>
         </div>
-        <!-- Christmas Badge (Optional) -->
         <div class="absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded-full font-bold animate-pulse">
             Christmas & Happy New Year
         </div>
@@ -65,21 +64,31 @@
                 <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
                     @for (int i = 0; i < 6; i++)
                     {
-                        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
-                            <a asp-controller="Home" asp-action="ProductDetail">
-                                <div class="relative h-40 bg-gray-50 flex items-center justify-center p-4">
-                                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=400" alt="Perfume" class="max-h-full max-w-full object-contain">
-                                    <div class="absolute top-2 left-2 bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full">-15%</div>
+                        var prodId = 100 + i;
+                        var prodName = "Nước hoa nam " + (i + 1);
+                        var prodPrice = 3550000;
+                        var prodImg = "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=400";
+                        
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group product-card" 
+                             data-id="@prodId" data-name="@prodName" data-desc="Nước hoa nam cao cấp" data-price="@prodPrice" data-img="@prodImg">
+                            <div class="relative h-40 bg-gray-50 flex items-center justify-center p-4">
+                                <a asp-controller="Home" asp-action="ProductDetail">
+                                    <img src="@prodImg" alt="@prodName" class="max-h-full max-w-full object-contain">
+                                </a>
+                                <div class="absolute top-2 left-2 bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full">-15%</div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-xs font-semibold text-gray-800 line-clamp-2 mb-2 group-hover:text-orange-500 transition-colors">@prodName</h3>
+                                <div class="text-[10px] text-gray-500 mb-2">@prodPrice.ToString("N0")đ</div>
+                                <div class="flex items-center justify-between">
+                                    <button class="p-1.5 rounded-md hover:bg-gray-100 btn-add-cart" title="Thêm vào giỏ hàng">
+                                        <i class="fa-solid fa-cart-shopping text-gray-600"></i>
+                                    </button>
+                                    <button class="p-1.5 rounded-md hover:bg-gray-100 btn-add-fav" title="Thêm vào yêu thích">
+                                        <i class="fa-regular fa-heart text-gray-600"></i>
+                                    </button>
                                 </div>
-                                <div class="p-3">
-                                    <h3 class="text-xs font-semibold text-gray-800 line-clamp-2 mb-2 group-hover:text-orange-500 transition-colors">Jean Paul Gaultier Le Male Le Parfum</h3>
-                                    <div class="text-[10px] text-gray-500 mb-2">325.000đ - 3.550.000đ</div>
-                                    <div class="flex items-center justify-between">
-                                        <button class="p-1.5 rounded-md hover:bg-gray-100"><i class="fa-solid fa-cart-shopping text-gray-600"></i></button>
-                                        <button class="p-1.5 rounded-md hover:bg-gray-100"><i class="fa-regular fa-heart text-gray-600"></i></button>
-                                    </div>
-                                </div>
-                            </a>
+                            </div>
                         </div>
                     }
                 </div>
@@ -94,21 +103,31 @@
                 <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
                     @for (int i = 0; i < 6; i++)
                     {
-                        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group">
-                            <a asp-controller="Home" asp-action="ProductDetail">
-                                <div class="relative h-40 bg-gray-50 flex items-center justify-center p-4">
-                                    <img src="https://images.unsplash.com/photo-1585232351009-aa87416fca90?auto=format&fit=crop&q=80&w=400" alt="Perfume" class="max-h-full max-w-full object-contain">
-                                    <div class="absolute top-2 left-2 bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full">-15%</div>
+                        var prodId = 200 + i;
+                        var prodName = "Nước hoa nữ " + (i + 1);
+                        var prodPrice = 3250000;
+                        var prodImg = "https://images.unsplash.com/photo-1585232351009-aa87416fca90?auto=format&fit=crop&q=80&w=400";
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group product-card"
+                             data-id="@prodId" data-name="@prodName" data-desc="Nước hoa nữ cao cấp" data-price="@prodPrice" data-img="@prodImg">
+                            <div class="relative h-40 bg-gray-50 flex items-center justify-center p-4">
+                                <a asp-controller="Home" asp-action="ProductDetail">
+                                    <img src="@prodImg" alt="@prodName" class="max-h-full max-w-full object-contain">
+                                </a>
+                                <div class="absolute top-2 left-2 bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full">-15%</div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-xs font-semibold text-gray-800 line-clamp-2 mb-2 group-hover:text-orange-500 transition-colors">@prodName</h3>
+                                <div class="text-[10px] text-gray-500 mb-2">@prodPrice.ToString("N0")đ</div>
+                                <div class="flex items-center justify-between">
+                                    <button class="p-1.5 rounded-md hover:bg-gray-100 btn-add-cart" title="Thêm vào giỏ hàng">
+                                        <i class="fa-solid fa-cart-shopping text-gray-600"></i>
+                                    </button>
+                                    <button class="p-1.5 rounded-md hover:bg-gray-100 btn-add-fav" title="Thêm vào yêu thích">
+                                        <i class="fa-regular fa-heart text-gray-600"></i>
+                                    </button>
                                 </div>
-                                <div class="p-3">
-                                    <h3 class="text-xs font-semibold text-gray-800 line-clamp-2 mb-2 group-hover:text-orange-500 transition-colors">Chanel No. 5 Eau de Parfum</h3>
-                                    <div class="text-[10px] text-gray-500 mb-2">325.000đ - 3.550.000đ</div>
-                                    <div class="flex items-center justify-between">
-                                        <button class="p-1.5 rounded-md hover:bg-gray-100"><i class="fa-solid fa-cart-shopping text-gray-600"></i></button>
-                                        <button class="p-1.5 rounded-md hover:bg-gray-100"><i class="fa-regular fa-heart text-gray-600"></i></button>
-                                    </div>
-                                </div>
-                            </a>
+                            </div>
                         </div>
                     }
                 </div>
@@ -116,3 +135,49 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Thêm vào giỏ hàng
+            $('.btn-add-cart').click(function(e) {
+                e.preventDefault();
+                var card = $(this).closest('.product-card');
+                var data = {
+                    productId: card.data('id'),
+                    name: card.data('name'),
+                    description: card.data('desc'),
+                    price: card.data('price'),
+                    imageUrl: card.data('img')
+                };
+
+                $.post('/Home/AddToCart', data, function(res) {
+                    if (res.success) {
+                        alert('Đã thêm sản phẩm vào giỏ hàng!');
+                        // Bạn có thể cập nhật số lượng trên icon giỏ hàng ở đây nếu muốn
+                    }
+                });
+            });
+
+            // Thêm vào yêu thích
+            $('.btn-add-fav').click(function(e) {
+                e.preventDefault();
+                var card = $(this).closest('.product-card');
+                var data = {
+                    productId: card.data('id'),
+                    name: card.data('name'),
+                    description: card.data('desc'),
+                    price: card.data('price'),
+                    imageUrl: card.data('img')
+                };
+
+                $.post('/Home/AddToFavorite', data, function(res) {
+                    if (res.success) {
+                        alert('Đã thêm sản phẩm vào danh sách yêu thích!');
+                        // Bạn có thể cập nhật số lượng trên icon trái tim ở đây nếu muốn
+                    }
+                });
+            });
+        });
+    </script>
+}

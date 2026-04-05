@@ -2,33 +2,37 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "kill-app",
+            "command": "powershell -Command \"Get-Process CuoiKy_CCMTPTPM -ErrorAction SilentlyContinue | Stop-Process -Force\"",
+            "type": "shell"
+        },
+        {
             "label": "build",
-            "command": "dotnet",
-            "type": "process",
+            "command": "C:\\Program Files\\dotnet\\dotnet.exe",
+            "type": "shell",
             "args": [
                 "build",
                 "${workspaceFolder}/CuoiKy_CCMTPTPM.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+                "/property:GenerateFullPaths=true"
             ],
+            "dependsOn": "kill-app",
             "problemMatcher": "$msCompile"
         },
         {
             "label": "publish",
-            "command": "dotnet",
-            "type": "process",
+            "command": "C:\\Program Files\\dotnet\\dotnet.exe",
+            "type": "shell",
             "args": [
                 "publish",
                 "${workspaceFolder}/CuoiKy_CCMTPTPM.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+                "/property:GenerateFullPaths=true"
             ],
             "problemMatcher": "$msCompile"
         },
         {
             "label": "watch",
-            "command": "dotnet",
-            "type": "process",
+            "command": "C:\\Program Files\\dotnet\\dotnet.exe",
+            "type": "shell",
             "args": [
                 "watch",
                 "run",

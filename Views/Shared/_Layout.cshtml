@@ -43,10 +43,13 @@
 
             <!-- Icons -->
             <div class="flex items-center space-x-6 text-xl text-gray-700">
-                <a href="#" class="relative">
+                <a asp-controller="Home" asp-action="Favorites" class="relative hover:text-orange-500 transition-colors">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+                <a asp-controller="Home" asp-action="Cart" class="relative hover:text-orange-500 transition-colors">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
-                <a href="#">
+                <a href="#" class="hover:text-orange-500 transition-colors">
                     <i class="fa-regular fa-circle-user"></i>
                 </a>
             </div>
