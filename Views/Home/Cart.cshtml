@@ -1,0 +1,123 @@
+@model List<CuoiKy_CCMTPTPM.Models.CartItem>
+@{
+    ViewData["Title"] = "Giỏ hàng - Minh Thành";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800">Màn hình giỏ hàng - Minh Thành</h1>
+
+    <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-black text-white">
+                        <th class="p-4 w-16 bg-green-500 text-center">
+                            <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        </th>
+                        <th class="p-4 text-center uppercase tracking-wider font-bold">Sản Phẩm</th>
+                        <th class="p-4 text-center uppercase tracking-wider font-bold">Giá</th>
+                        <th class="p-4 text-center uppercase tracking-wider font-bold">Số Lượng</th>
+                        <th class="p-4 text-center uppercase tracking-wider font-bold">Tổng Tiền</th>
+                        <th class="p-4 w-16"></th>
+                    </tr>
+                </thead>
+                <tbody class="bg-gray-500 text-white" id="cart-body">
+                    @if (Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr class="border-b border-gray-400 hover:bg-gray-600 transition-colors cart-item" data-id="@item.ProductId">
+                                <td class="p-4 text-center">
+                                    <input type="checkbox" checked="@item.Selected" class="w-5 h-5 accent-black rounded">
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-20 h-20 bg-white rounded-md overflow-hidden flex items-center justify-center p-2 shadow-inner">
+                                            <img src="@item.ImageUrl" alt="@item.Name" class="max-h-full max-w-full object-contain">
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-lg">@item.Name</h3>
+                                            <p class="text-gray-300 text-sm">@item.Description</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-center font-medium">@item.Price.ToString("N0")đ</td>
+                                <td class="p-4">
+                                    <div class="flex items-center justify-center space-x-3">
+                                        <button class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-800 transition-colors btn-update" data-delta="-1">
+                                            <i class="fa-solid fa-minus text-xs"></i>
+                                        </button>
+                                        <span class="w-12 h-8 flex items-center justify-center bg-white text-black rounded-lg font-bold item-quantity">@item.Quantity</span>
+                                        <button class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-800 transition-colors btn-update" data-delta="1">
+                                            <i class="fa-solid fa-plus text-xs"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="p-4 text-center font-bold text-orange-400 item-total">@item.Total.ToString("N0")đ</td>
+                                <td class="p-4 text-center">
+                                    <button class="text-red-500 hover:text-red-400 transition-colors transform hover:scale-110 btn-remove">
+                                        <i class="fa-solid fa-xmark text-2xl"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="p-12 text-center text-gray-300 text-xl italic">Giỏ hàng của bạn đang trống.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-8 flex justify-between items-center">
+        <a asp-action="Index" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:-translate-y-1 active:scale-95 flex items-center">
+            <i class="fa-solid fa-arrow-left mr-2"></i> Quay lại
+        </a>
+        <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-12 rounded-lg shadow-lg transition-all transform hover:-translate-y-1 active:scale-95">
+            Thanh Toán
+        </button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Cập nhật số lượng
+            $('.btn-update').click(function () {
+                var row = $(this).closest('.cart-item');
+                var id = row.data('id');
+                var delta = $(this).data('delta');
+
+                $.post('/Home/UpdateQuantity', { productId: id, delta: delta }, function (res) {
+                    if (res.success) {
+                        row.find('.item-quantity').text(res.quantity);
+                        row.find('.item-total').text(res.total);
+                    }
+                });
+            });
+
+            // Xóa sản phẩm
+            $('.btn-remove').click(function () {
+                if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) return;
+                
+                var row = $(this).closest('.cart-item');
+                var id = row.data('id');
+
+                $.post('/Home/RemoveFromCart', { productId: id }, function (res) {
+                    if (res.success) {
+                        row.fadeOut(300, function() {
+                            $(this).remove();
+                            if ($('.cart-item').length === 0) {
+                                $('#cart-body').html('<tr><td colspan="6" class="p-12 text-center text-gray-300 text-xl italic">Giỏ hàng của bạn đang trống.</td></tr>');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
