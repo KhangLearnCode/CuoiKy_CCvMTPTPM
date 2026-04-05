@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Cửa hàng nước hoa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .logo-font {
+            font-family: 'Dancing Script', cursive;
+            color: #f97316;
+        }
+        .nav-link:hover {
+            color: #f97316;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-[#e5e7eb] sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            <!-- Logo -->
+            <a asp-controller="Home" asp-action="Index" class="logo-font text-2xl font-bold whitespace-nowrap">Cửa hàng nước hoa</a>
+
+            <!-- Search Bar -->
+            <div class="relative flex-1 max-w-2xl">
+                <input type="text" placeholder="Tìm kiếm nước hoa theo tên, thương hiệu..." class="w-full bg-white border-none rounded-full py-2 px-4 pl-10 text-sm focus:ring-2 focus:ring-orange-500">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+
+            <!-- Icons/Buttons -->
+            <div class="flex items-center space-x-2">
+                <a asp-controller="Home" asp-action="ProductList" class="bg-white px-4 py-1.5 rounded-lg text-sm font-bold text-gray-800 hover:bg-gray-50 shadow-sm transition-colors">Sản phẩm</a>
+                <a href="#" class="bg-white px-4 py-1.5 rounded-lg text-sm font-bold text-gray-800 hover:bg-gray-50 shadow-sm transition-colors flex items-center">
+                    <i class="fa-solid fa-user mr-2 text-lg"></i> Tài khoản
+                </a>
+            </div>
+        </div>
+        <!-- Secondary Navigation -->
+        <div class="bg-white border-b">
+            <div class="container mx-auto px-4">
+                <nav class="flex items-center space-x-10 py-3 text-lg font-medium text-gray-500 overflow-x-auto whitespace-nowrap">
+                    <a asp-controller="Home" asp-action="Index" class="hover:text-orange-500 transition-colors">Trang chủ</a>
+                    <a asp-controller="Home" asp-action="ProductList" class="hover:text-orange-500 transition-colors">Sản phẩm</a>
+                    <div class="flex items-center hover:text-orange-500 cursor-pointer transition-colors">
+                        Thương hiệu <i class="fa-solid fa-chevron-right text-[12px] ml-2 mt-0.5"></i>
+                    </div>
+                    <div class="flex items-center hover:text-orange-500 cursor-pointer transition-colors">
+                        Nước hoa <i class="fa-solid fa-chevron-right text-[12px] ml-2 mt-0.5"></i>
+                    </div>
+                    <div class="flex items-center hover:text-orange-500 cursor-pointer transition-colors">
+                        Nước hoa chiết <i class="fa-solid fa-chevron-right text-[12px] ml-2 mt-0.5"></i>
+                    </div>
+                    <a href="#" class="hover:text-orange-500 transition-colors">Liên hệ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main role="main" class="min-h-screen">
+        @RenderBody()
+    </main>
+
+    <footer class="bg-gray-200 py-8 mt-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Về chúng tôi -->
+            <div>
+                <h3 class="font-bold mb-4">Về chúng tôi</h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li><a href="#" class="hover:text-orange-500">Trang chủ</a></li>
+                    <li><a href="#" class="hover:text-orange-500">Giới thiệu</a></li>
+                    <li><a href="#" class="hover:text-orange-500">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <!-- Phương thức thanh toán -->
+            <div>
+                <h3 class="font-bold mb-4">Phương thức thanh toán</h3>
+                <div class="flex space-x-4 grayscale opacity-70">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" alt="Visa" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="Momo" class="h-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/ZaloPay_Logo.png" alt="ZaloPay" class="h-6">
+                </div>
+            </div>
+
+            <!-- Kết nối -->
+            <div>
+                <h3 class="font-bold mb-4">Kết nối</h3>
+                <div class="flex space-x-4 text-2xl">
+                    <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="text-pink-600 hover:text-pink-800"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Badge -->
+            <div class="flex flex-col items-end justify-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Logo_da_thong_bao_Bo_Cong_Thuong.png/800px-Logo_da_thong_bao_Bo_Cong_Thuong.png" alt="Đã thông báo Bộ Công Thương" class="h-12">
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
