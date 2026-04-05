@@ -1,0 +1,192 @@
+@{
+    ViewData["Title"] = "Thanh toán";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <nav class="text-sm mb-8">
+        <ol class="list-none p-0 inline-flex">
+            <li class="flex items-center text-gray-500">
+                <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                <span class="mx-2">/</span>
+            </li>
+            <li class="flex items-center text-gray-500">
+                <a href="#">Giỏ hàng</a>
+                <span class="mx-2">/</span>
+            </li>
+            <li class="flex items-center text-black font-medium">Thanh toán</li>
+        </ol>
+    </nav>
+
+    <div id="checkout-container" class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Main Content (Steps 1 & 2) -->
+        <div class="lg:col-span-2">
+            <!-- Step 1: Thông tin mua hàng -->
+            <div id="step-1" class="checkout-step">
+                <h2 class="text-xl font-bold mb-6">Thông tin mua hàng</h2>
+                <div class="space-y-4">
+                    <input type="email" placeholder="Email ( Tùy chọn)" class="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+                    <input type="tel" placeholder="Số điện thoại" class="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+                    <input type="text" placeholder="Địa chỉ" class="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+                    <textarea placeholder="Ghi chú" rows="3" class="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500"></textarea>
+                    
+                    <div class="flex items-center space-x-2 border border-gray-300 p-4 rounded-md w-1/2">
+                        <input type="text" placeholder="Mã giảm giá (Nếu có)" class="flex-grow focus:outline-none bg-transparent">
+                    </div>
+
+                    <div class="flex items-start space-x-3 pt-4 max-w-lg">
+                        <div class="pt-1">
+                            <div class="w-4 h-4 rounded-full border border-black flex items-center justify-center cursor-pointer"></div>
+                        </div>
+                        <label class="text-base text-black font-medium leading-tight">
+                            Tôi đã đọc và đồng ý với chính sách bảo mật thông tin, bảo mật thông tin thanh toán và các chính sách bán hàng trên website này.
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Phương thức thanh toán -->
+            <div id="step-2" class="checkout-step hidden">
+                <h2 class="text-xl font-bold mb-6">Phương thức thanh toán</h2>
+                
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <button type="button" onclick="selectPayment('cod')" id="btn-cod" class="payment-method-btn border border-teal-400 bg-white py-2 rounded text-center text-sm font-medium">
+                            COD
+                        </button>
+                        <button type="button" onclick="selectPayment('wallet')" id="btn-wallet" class="payment-method-btn border border-gray-300 bg-white py-2 rounded text-center text-sm font-medium">
+                            Ví điện tử
+                        </button>
+                        <button type="button" onclick="selectPayment('bank')" id="btn-bank" class="payment-method-btn border border-gray-300 bg-white py-2 rounded text-center text-sm font-medium">
+                            Chuyển khoản
+                        </button>
+                    </div>
+
+                    <div id="payment-description" class="text-gray-700 mt-4">
+                        Thanh toán khi nhận hàng — bạn trả tiền cho nhân viên giao hàng.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Common Buttons for Step 1 & 2 -->
+            <div id="action-buttons" class="mt-12 flex flex-col space-y-4 w-64">
+                <button id="btn-next" onclick="nextStep()" class="bg-[#D1D5DB] hover:bg-gray-400 text-black font-medium py-6 px-4 rounded text-lg transition duration-200">
+                    Tiến hành thanh toán
+                </button>
+                <button id="btn-back" onclick="prevStep()" class="bg-[#D1D5DB] hover:bg-gray-300 text-black font-medium py-1 px-4 rounded text-sm w-fit mx-auto transition duration-200">
+                    Quay lại
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar: Thông tin đơn hàng (Visible in Step 1 & 2) -->
+        <div id="order-summary" class="lg:col-span-1">
+            <div class="bg-white p-4 rounded-lg">
+                <h3 class="text-lg font-bold mb-6 text-right lg:text-left">Thông tin đơn hàng</h3>
+                <div class="space-y-6 text-base">
+                    <div class="flex justify-between">
+                        <span class="text-gray-700">Tạm tính</span>
+                        <span class="font-medium"></span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-700">Phí vận chuyển</span>
+                        <span class="font-medium"></span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-700">Giảm giá</span>
+                        <span class="font-medium"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Đặt đơn hàng thành công (Full width) -->
+        <div id="step-3" class="checkout-step hidden col-span-1 lg:col-span-3 text-center py-20">
+            <div class="max-w-xl mx-auto border border-teal-400 p-12 rounded-lg">
+                <h2 class="text-3xl font-bold mb-4">Đặt đơn hàng thành công.</h2>
+                <p class="text-3xl font-bold">Cám ơn bạn đã mua hàng.</p>
+            </div>
+            <div class="mt-12">
+                <button onclick="window.location.href='/'" class="bg-[#D1D5DB] hover:bg-gray-400 text-black font-medium py-6 px-16 rounded text-xl transition duration-200 inline-block">
+                    Tiếp tục mua sắm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let currentStep = 1;
+
+        function updateUI() {
+            // Hide all steps
+            document.querySelectorAll('.checkout-step').forEach(el => el.classList.add('hidden'));
+            
+            // Show current step
+            document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+
+            const orderSummary = document.getElementById('order-summary');
+            const actionButtons = document.getElementById('action-buttons');
+            const checkoutContainer = document.getElementById('checkout-container');
+
+            // Handle sidebar visibility
+            if (currentStep === 3) {
+                orderSummary.classList.add('hidden');
+                actionButtons.classList.add('hidden');
+                // Center the success message
+                checkoutContainer.classList.remove('lg:grid-cols-3');
+                checkoutContainer.classList.add('flex', 'justify-center', 'items-center', 'min-h-[60vh]');
+            } else {
+                orderSummary.classList.remove('hidden');
+                actionButtons.classList.remove('hidden');
+                checkoutContainer.classList.add('lg:grid-cols-3');
+                checkoutContainer.classList.remove('flex', 'justify-center', 'items-center', 'min-h-[60vh]');
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < 3) {
+                currentStep++;
+                updateUI();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+                window.scrollTo(0, 0);
+            } else {
+                // Logic for back to cart
+                window.history.back();
+            }
+        }
+
+        function selectPayment(method) {
+            // Update button styles
+            document.querySelectorAll('.payment-method-btn').forEach(btn => {
+                btn.classList.remove('border-teal-400');
+                btn.classList.add('border-gray-300');
+            });
+
+            const selectedBtn = document.getElementById(`btn-${method}`);
+            selectedBtn.classList.remove('border-gray-300');
+            selectedBtn.classList.add('border-teal-400');
+
+            // Update description
+            const desc = document.getElementById('payment-description');
+            if (method === 'cod') {
+                desc.textContent = 'Thanh toán khi nhận hàng — bạn trả tiền cho nhân viên giao hàng.';
+            } else if (method === 'wallet') {
+                desc.textContent = 'Thanh toán qua ví điện tử MoMo, ZaloPay...';
+            } else if (method === 'bank') {
+                desc.textContent = 'Chuyển khoản trực tiếp vào tài khoản ngân hàng của chúng tôi.';
+            }
+        }
+
+        // Initialize UI
+        updateUI();
+    </script>
+}

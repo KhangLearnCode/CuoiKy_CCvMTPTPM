@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CuoiKy_CCMTPTPM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6623f6c95fd535a7e0846d692fb2f6e6d08ba672")]
 [assembly: System.Reflection.AssemblyProductAttribute("CuoiKy_CCMTPTPM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CuoiKy_CCMTPTPM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
