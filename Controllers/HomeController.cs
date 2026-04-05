@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using CuoiKy_CCMTPTPM.Models;
+using CuoiKy_CCMTPTPM.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CuoiKy_CCMTPTPM.Controllers
 {

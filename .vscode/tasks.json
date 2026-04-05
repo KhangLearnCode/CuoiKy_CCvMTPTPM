@@ -16,6 +16,15 @@
                 "/property:GenerateFullPaths=true"
             ],
             "dependsOn": "kill-app",
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/CuoiKy_CCMTPTPM.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
             "problemMatcher": "$msCompile"
         },
         {
@@ -26,6 +35,13 @@
                 "publish",
                 "${workspaceFolder}/CuoiKy_CCMTPTPM.csproj",
                 "/property:GenerateFullPaths=true"
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/CuoiKy_CCMTPTPM.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -33,6 +49,8 @@
             "label": "watch",
             "command": "C:\\Program Files\\dotnet\\dotnet.exe",
             "type": "shell",
+            "command": "dotnet",
+            "type": "process",
             "args": [
                 "watch",
                 "run",

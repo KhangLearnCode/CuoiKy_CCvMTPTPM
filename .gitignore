@@ -1,0 +1,52 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+[Bb]uild/
+[Rr]elease/
+[Dd]ebug/
+publish/
+artifacts/
+
+# Visual Studio / IDE files
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# VS Code (keep shared settings files if needed)
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Logs and temporary files
+*.log
+logs/
+LogFiles/
+
+# Test and coverage
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# NuGet packages and artifacts
+*.nupkg
+*.snupkg
+packages/
+!packages/build/
+!packages/repositories.config
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local environment overrides
+.env
+.env.*
+appsettings.*.local.json

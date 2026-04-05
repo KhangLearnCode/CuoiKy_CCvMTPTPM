@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\CuoiKy_CCMTPTPM.props" />
-</Project>
