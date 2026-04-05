@@ -135,6 +135,9 @@ namespace CuoiKy_CCMTPTPM.Controllers
                 });
             }
             return Json(new { success = true, favCount = _favorites.Count });
+        public IActionResult ProductList()
+        {
+            return View();
         }
 
         public IActionResult ProductDetail()
