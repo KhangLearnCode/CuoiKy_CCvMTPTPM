@@ -1,0 +1,90 @@
+@{
+    ViewData["Title"] = "My Account";
+}
+
+<div class="container mx-auto px-4 py-8 max-w-6xl">
+    <div class="flex flex-col md:flex-row gap-8">
+        
+        <!-- Sidebar -->
+        <div class="w-full md:w-1/4">
+            <h1 class="text-2xl font-bold mb-1">My Account</h1>
+            <p class="text-xs text-gray-500 mb-8 uppercase tracking-wider">The Ethereal Curator</p>
+
+            <nav class="space-y-2">
+                <a href="#" class="flex items-center space-x-3 text-green-600 bg-green-50 px-4 py-3 rounded-md font-medium">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Personal Details</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-4 py-3 rounded-md transition-colors">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-4 py-3 rounded-md transition-colors">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Addresses</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-4 py-3 rounded-md transition-colors">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>Loyalty Program</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="w-full md:w-3/4 md:pl-8">
+            
+            <!-- Personal Identity Section -->
+            <div class="mb-12">
+                <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6 border-b pb-2">Personal Identity</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Full Name</label>
+                        <p class="text-gray-900 border-b border-gray-200 pb-2">Alexander V. Thorne</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Phone Number</label>
+                        <p class="text-gray-900 border-b border-gray-200 pb-2">+1 (555) 892-0431</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Email Address</label>
+                        <p class="text-gray-900 border-b border-gray-200 pb-2">alexander.thorne@ethereal.com</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Date of Birth</label>
+                        <p class="text-gray-900 border-b border-gray-200 pb-2">May 24, 1992</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Management Section -->
+            <div class="mb-12">
+                <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4 border-b pb-2">Account Management</h2>
+                <p class="text-sm text-gray-600 mb-6 max-w-lg leading-relaxed">
+                    Adjust your security preferences, manage digital notifications, or temporarily suspend your curator profile.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 mb-6">
+                    <button class="bg-[#8bb4f7] hover:bg-blue-400 text-white text-sm font-medium py-2 px-6 rounded uppercase tracking-wider transition-colors">
+                        Change Password
+                    </button>
+                    <button class="border border-gray-300 hover:bg-gray-50 text-gray-700 text-sm font-medium py-2 px-6 rounded uppercase tracking-wider transition-colors">
+                        Notifications
+                    </button>
+                </div>
+
+                <button class="text-red-500 text-sm font-bold hover:underline uppercase tracking-wider">
+                    Deactivate Account
+                </button>
+            </div>
+
+            <!-- Save Changes -->
+            <div class="flex justify-end mt-8 pt-6 border-t border-gray-200">
+                <button class="bg-[#2ecc71] hover:bg-green-500 text-white text-sm font-bold py-3 px-8 rounded shadow uppercase tracking-wider transition-colors">
+                    Save Changes
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
