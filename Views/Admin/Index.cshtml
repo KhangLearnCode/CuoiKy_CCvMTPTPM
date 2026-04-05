@@ -1,0 +1,133 @@
+@model CuoiKy_CCMTPTPM.Models.AdminDashboardViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="flex justify-between items-center mb-8">
+    <div>
+        <h2 class="text-2xl font-bold text-gray-900">Dashboard Overview</h2>
+        <p class="text-sm text-gray-500 mt-1">Welcome back, Admin</p>
+    </div>
+    <div class="flex space-x-3">
+        <button class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-calendar mr-2"></i> Last 30 Days
+        </button>
+        <button class="bg-green-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-green-700 transition-colors">
+            <i class="fa-solid fa-download mr-2"></i> Generate Report
+        </button>
+    </div>
+</div>
+
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Total Revenue</h3>
+        <div class="flex items-end justify-between">
+            <span class="text-2xl font-bold text-gray-900">@Model.TotalRevenue.ToString("N0")đ</span>
+            <span class="text-xs font-bold text-green-500 flex items-center mb-1">
+                <i class="fa-solid fa-arrow-trend-up mr-1"></i> @Model.RevenueGrowth%
+            </span>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Total Orders</h3>
+        <div class="flex items-end justify-between">
+            <span class="text-2xl font-bold text-gray-900">@Model.TotalOrders</span>
+            <span class="text-xs font-bold text-green-500 flex items-center mb-1">
+                <i class="fa-solid fa-arrow-trend-up mr-1"></i> 5.2%
+            </span>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Total Customers</h3>
+        <div class="flex items-end justify-between">
+            <span class="text-2xl font-bold text-gray-900">@Model.TotalCustomers</span>
+            <span class="text-xs font-bold text-green-500 flex items-center mb-1">
+                <i class="fa-solid fa-arrow-trend-up mr-1"></i> 3.1%
+            </span>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Active Sessions</h3>
+        <div class="flex items-end justify-between">
+            <span class="text-2xl font-bold text-gray-900">42</span>
+            <span class="text-xs font-bold text-red-500 flex items-center mb-1">
+                <i class="fa-solid fa-arrow-trend-down mr-1"></i> 1.5%
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Recent Orders -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+            <h3 class="text-lg font-bold text-gray-900">Recent Orders</h3>
+            <a asp-controller="Admin" asp-action="Orders" class="text-sm font-medium text-green-600 hover:text-green-700">View All</a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-600">
+                <thead class="text-xs font-bold text-gray-400 uppercase bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3">Order ID</th>
+                        <th class="px-6 py-3">Customer</th>
+                        <th class="px-6 py-3">Amount</th>
+                        <th class="px-6 py-3">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @foreach (var order in Model.RecentOrders)
+                    {
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4 font-medium text-gray-900">@order.OrderId</td>
+                            <td class="px-6 py-4">@order.CustomerName</td>
+                            <td class="px-6 py-4 font-medium text-gray-900">@order.Amount.ToString("N0")đ</td>
+                            <td class="px-6 py-4">
+                                @if (order.Status == "Completed")
+                                {
+                                    <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold uppercase">Completed</span>
+                                }
+                                else if (order.Status == "Processing")
+                                {
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold uppercase">Processing</span>
+                                }
+                                else
+                                {
+                                    <span class="px-2 py-1 bg-red-100 text-red-700 rounded-full text-[10px] font-bold uppercase">@order.Status</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+            <h3 class="text-lg font-bold text-gray-900">Top Products</h3>
+            <a asp-controller="Admin" asp-action="Products" class="text-sm font-medium text-green-600 hover:text-green-700">View Catalog</a>
+        </div>
+        <div class="p-6">
+            <div class="space-y-6">
+                @foreach (var product in Model.TopProducts)
+                {
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-bold text-gray-900">@product.Name</span>
+                            <span class="text-sm text-gray-500">@product.UnitsSold units sold</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: @(product.UnitsSold / 5)%"></div>
+                        </div>
+                        <div class="mt-1 text-right">
+                            <span class="text-xs font-medium text-gray-400">@product.Revenue.ToString("N0")đ revenue</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

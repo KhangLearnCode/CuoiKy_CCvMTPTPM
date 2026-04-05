@@ -1,3 +1,4 @@
+@model CuoiKy_CCMTPTPM.Models.ProfileViewModel
 @{
     ViewData["Title"] = "My Account";
 }
@@ -11,20 +12,20 @@
             <p class="text-xs text-gray-500 mb-8 uppercase tracking-wider">The Ethereal Curator</p>
 
             <nav class="space-y-2">
-                <a href="#" class="flex items-center space-x-3 text-green-600 bg-green-50 px-4 py-3 rounded-md font-medium">
+                <a asp-controller="Account" asp-action="Profile" asp-route-tab="Personal" class="flex items-center space-x-3 @(Model.ActiveTab == "Personal" ? "text-green-600 bg-green-50" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900") px-4 py-3 rounded-md font-medium transition-colors">
                     <i class="fa-regular fa-user"></i>
                     <span>Personal Details</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-4 py-3 rounded-md transition-colors">
+                <a asp-controller="Account" asp-action="Profile" asp-route-tab="Orders" class="flex items-center space-x-3 @(Model.ActiveTab == "Orders" ? "text-green-600 bg-green-50" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900") px-4 py-3 rounded-md font-medium transition-colors">
                     <i class="fa-solid fa-box-open"></i>
                     <span>Orders</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-4 py-3 rounded-md transition-colors">
+                <a asp-controller="Account" asp-action="Profile" asp-route-tab="Addresses" class="flex items-center space-x-3 @(Model.ActiveTab == "Addresses" ? "text-green-600 bg-green-50" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900") px-4 py-3 rounded-md font-medium transition-colors">
                     <i class="fa-solid fa-location-dot"></i>
                     <span>Addresses</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 px-4 py-3 rounded-md transition-colors">
-                    <i class="fa-regular fa-heart"></i>
+                <a asp-controller="Account" asp-action="Profile" asp-route-tab="Loyalty" class="flex items-center space-x-3 @(Model.ActiveTab == "Loyalty" ? "text-green-600 bg-green-50" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900") px-4 py-3 rounded-md font-medium transition-colors">
+                    <i class="fa-regular fa-star"></i>
                     <span>Loyalty Program</span>
                 </a>
             </nav>
@@ -33,57 +34,158 @@
         <!-- Main Content -->
         <div class="w-full md:w-3/4 md:pl-8">
             
-            <!-- Personal Identity Section -->
-            <div class="mb-12">
-                <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6 border-b pb-2">Personal Identity</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Full Name</label>
-                        <p class="text-gray-900 border-b border-gray-200 pb-2">Alexander V. Thorne</p>
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Phone Number</label>
-                        <p class="text-gray-900 border-b border-gray-200 pb-2">+1 (555) 892-0431</p>
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Email Address</label>
-                        <p class="text-gray-900 border-b border-gray-200 pb-2">alexander.thorne@ethereal.com</p>
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Date of Birth</label>
-                        <p class="text-gray-900 border-b border-gray-200 pb-2">May 24, 1992</p>
+            @if (Model.ActiveTab == "Personal")
+            {
+                <!-- Personal Identity Section -->
+                <div class="mb-12">
+                    <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6 border-b pb-2">Personal Identity</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Full Name</label>
+                            <p class="text-gray-900 border-b border-gray-200 pb-2">@Model.FullName</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Phone Number</label>
+                            <p class="text-gray-900 border-b border-gray-200 pb-2">@Model.PhoneNumber</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Email Address</label>
+                            <p class="text-gray-900 border-b border-gray-200 pb-2">@Model.Email</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2">Date of Birth</label>
+                            <p class="text-gray-900 border-b border-gray-200 pb-2">@Model.DateOfBirth</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Account Management Section -->
-            <div class="mb-12">
-                <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4 border-b pb-2">Account Management</h2>
-                <p class="text-sm text-gray-600 mb-6 max-w-lg leading-relaxed">
-                    Adjust your security preferences, manage digital notifications, or temporarily suspend your curator profile.
-                </p>
+                <!-- Account Management Section -->
+                <div class="mb-12">
+                    <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4 border-b pb-2">Account Management</h2>
+                    <p class="text-sm text-gray-600 mb-6 max-w-lg leading-relaxed">
+                        Adjust your security preferences, manage digital notifications, or temporarily suspend your curator profile.
+                    </p>
 
-                <div class="flex flex-wrap items-center gap-4 mb-6">
-                    <button class="bg-[#8bb4f7] hover:bg-blue-400 text-white text-sm font-medium py-2 px-6 rounded uppercase tracking-wider transition-colors">
-                        Change Password
-                    </button>
-                    <button class="border border-gray-300 hover:bg-gray-50 text-gray-700 text-sm font-medium py-2 px-6 rounded uppercase tracking-wider transition-colors">
-                        Notifications
+                    <div class="flex flex-wrap items-center gap-4 mb-6">
+                        <button class="bg-[#8bb4f7] hover:bg-blue-400 text-white text-sm font-medium py-2 px-6 rounded uppercase tracking-wider transition-colors">
+                            Change Password
+                        </button>
+                        <button class="border border-gray-300 hover:bg-gray-50 text-gray-700 text-sm font-medium py-2 px-6 rounded uppercase tracking-wider transition-colors">
+                            Notifications
+                        </button>
+                    </div>
+
+                    <button class="text-red-500 text-sm font-bold hover:underline uppercase tracking-wider">
+                        Deactivate Account
                     </button>
                 </div>
 
-                <button class="text-red-500 text-sm font-bold hover:underline uppercase tracking-wider">
-                    Deactivate Account
-                </button>
-            </div>
+                <!-- Save Changes -->
+                <form asp-controller="Account" asp-action="UpdateProfile" method="POST">
+                    <input type="hidden" asp-for="FullName" />
+                    <input type="hidden" asp-for="PhoneNumber" />
+                    <input type="hidden" asp-for="Email" />
+                    <input type="hidden" asp-for="DateOfBirth" />
+                    <div class="flex justify-end mt-8 pt-6 border-t border-gray-200">
+                        <button type="submit" class="bg-[#2ecc71] hover:bg-green-500 text-white text-sm font-bold py-3 px-8 rounded shadow uppercase tracking-wider transition-colors">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            }
+            else if (Model.ActiveTab == "Orders")
+            {
+                <div class="mb-12">
+                    <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6 border-b pb-2">Order History</h2>
+                    <div class="space-y-4">
+                        @foreach (var order in Model.Orders)
+                        {
+                            <div class="border rounded-lg p-6 bg-white shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center">
+                                <div>
+                                    <div class="flex items-center space-x-3 mb-1">
+                                        <span class="font-bold text-lg text-gray-900">@order.OrderId</span>
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold uppercase">@order.Status</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Placed on @order.Date.ToString("dd MMMM, yyyy")</p>
+                                    <p class="text-sm text-gray-700">@order.ItemsSummary</p>
+                                </div>
+                                <div class="mt-4 md:mt-0 text-right">
+                                    <p class="text-lg font-bold text-gray-900 mb-3">@order.Total.ToString("N0")đ</p>
+                                    <button class="text-sm font-bold text-green-600 hover:underline uppercase tracking-wider">View Details</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else if (Model.ActiveTab == "Addresses")
+            {
+                <div class="mb-12">
+                    <div class="flex justify-between items-center mb-6 border-b pb-2">
+                        <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest">My Addresses</h2>
+                        <button class="text-xs font-bold text-green-600 hover:underline uppercase tracking-wider">+ Add New Address</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        @foreach (var addr in Model.Addresses)
+                        {
+                            <div class="border rounded-lg p-6 bg-white shadow-sm relative @(addr.IsDefault ? "border-green-200 ring-1 ring-green-100" : "")">
+                                @if (addr.IsDefault)
+                                {
+                                    <span class="absolute top-4 right-4 px-2 py-1 bg-green-100 text-green-700 rounded text-[10px] font-bold uppercase">Default</span>
+                                }
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <i class="fa-solid @(addr.Type == "Home" ? "fa-house" : "fa-briefcase") text-gray-400"></i>
+                                    <span class="font-bold text-gray-900">@addr.Type</span>
+                                </div>
+                                <p class="font-medium text-gray-900 mb-1">@addr.ReceiverName</p>
+                                <p class="text-sm text-gray-600 mb-1">@addr.Phone</p>
+                                <p class="text-sm text-gray-600 mb-6">@addr.AddressDetail</p>
+                                <div class="flex space-x-4">
+                                    <button class="text-xs font-bold text-gray-700 hover:underline uppercase tracking-wider">Edit</button>
+                                    <button class="text-xs font-bold text-red-500 hover:underline uppercase tracking-wider">Remove</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else if (Model.ActiveTab == "Loyalty")
+            {
+                <div class="mb-12">
+                    <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6 border-b pb-2">Loyalty Program</h2>
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-8 text-white shadow-lg mb-8">
+                        <div class="flex justify-between items-start mb-8">
+                            <div>
+                                <p class="text-green-100 text-sm uppercase tracking-widest mb-1">Current Status</p>
+                                <h3 class="text-3xl font-bold">@Model.Loyalty.Rank</h3>
+                            </div>
+                            <i class="fa-regular fa-star text-4xl text-green-200 opacity-50"></i>
+                        </div>
+                        <div class="flex items-end justify-between">
+                            <div>
+                                <p class="text-green-100 text-sm uppercase tracking-widest mb-1">Available Points</p>
+                                <p class="text-4xl font-bold">@Model.Loyalty.Points</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-green-100 text-sm uppercase tracking-widest mb-1">Next Reward</p>
+                                <p class="font-bold">500 points to Platinum</p>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- Save Changes -->
-            <div class="flex justify-end mt-8 pt-6 border-t border-gray-200">
-                <button class="bg-[#2ecc71] hover:bg-green-500 text-white text-sm font-bold py-3 px-8 rounded shadow uppercase tracking-wider transition-colors">
-                    Save Changes
-                </button>
-            </div>
+                    <h3 class="font-bold text-gray-900 mb-4">Member Benefits (@Model.Loyalty.DiscountPercent% Discount)</h3>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        @foreach (var benefit in Model.Loyalty.Benefits)
+                        {
+                            <li class="flex items-center space-x-3 bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+                                <i class="fa-solid fa-circle-check text-green-500"></i>
+                                <span class="text-sm text-gray-700">@benefit</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
 
         </div>
     </div>

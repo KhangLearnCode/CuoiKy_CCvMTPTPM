@@ -1,3 +1,4 @@
+@model CuoiKy_CCMTPTPM.Models.LoginViewModel
 @{
     Layout = null;
     ViewData["Title"] = "Đăng nhập";
@@ -25,19 +26,21 @@
             Đăng nhập
         </div>
 
-        <form action="#" method="POST" class="w-4/5 mx-auto">
+        <form asp-controller="Account" asp-action="Login" method="POST" class="w-4/5 mx-auto">
             <div class="mb-5">
-                <label class="block text-gray-900 font-bold mb-2 text-sm">Email/SĐT:</label>
-                <input type="text" class="w-full bg-custom-light-blue h-10 px-3 outline-none border-none">
+                <label asp-for="EmailOrPhone" class="block text-gray-900 font-bold mb-2 text-sm">Email/SĐT:</label>
+                <input type="text" asp-for="EmailOrPhone" class="w-full bg-custom-light-blue h-10 px-3 outline-none border-none">
+                <span asp-validation-for="EmailOrPhone" class="text-red-500 text-xs"></span>
             </div>
 
             <div class="mb-5">
-                <label class="block text-gray-900 font-bold mb-2 text-sm">Mật khẩu:</label>
-                <input type="password" class="w-full bg-custom-light-blue h-10 px-3 outline-none border-none">
+                <label asp-for="Password" class="block text-gray-900 font-bold mb-2 text-sm">Mật khẩu:</label>
+                <input type="password" asp-for="Password" class="w-full bg-custom-light-blue h-10 px-3 outline-none border-none">
+                <span asp-validation-for="Password" class="text-red-500 text-xs"></span>
             </div>
 
             <div class="mb-8 flex items-center">
-                <input type="checkbox" id="remember" class="mr-2 h-4 w-4 rounded-full border-gray-400">
+                <input type="checkbox" asp-for="RememberMe" id="remember" class="mr-2 h-4 w-4 rounded-full border-gray-400">
                 <label for="remember" class="text-xs font-bold text-gray-800">Ghi nhớ đăng nhập</label>
             </div>
 
@@ -48,7 +51,7 @@
             </div>
 
             <div class="text-center mt-6">
-                <a href="/Account/Register" class="text-xs font-bold text-black hover:underline cursor-pointer">Chưa có tài khoản ? Đăng ký ngay</a>
+                <a asp-controller="Account" asp-action="Register" class="text-xs font-bold text-black hover:underline cursor-pointer">Chưa có tài khoản ? Đăng ký ngay</a>
             </div>
         </form>
     </div>

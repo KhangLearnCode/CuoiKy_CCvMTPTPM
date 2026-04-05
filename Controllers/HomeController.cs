@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using CuoiKy_CCMTPTPM.Models;
-using CuoiKy_CCMTPTPM.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CuoiKy_CCMTPTPM.Controllers
 {
@@ -135,6 +133,8 @@ namespace CuoiKy_CCMTPTPM.Controllers
                 });
             }
             return Json(new { success = true, favCount = _favorites.Count });
+        }
+
         public IActionResult ProductList()
         {
             return View();

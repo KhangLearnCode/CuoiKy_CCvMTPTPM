@@ -1,0 +1,82 @@
+@model CuoiKy_CCMTPTPM.Models.AdminCustomersViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Customer Management";
+}
+
+<div class="flex justify-between items-center mb-8">
+    <div>
+        <h2 class="text-2xl font-bold text-gray-900">Customer Management</h2>
+        <p class="text-sm text-gray-500 mt-1">Manage and interact with your users</p>
+    </div>
+    <div class="flex space-x-3">
+        <button class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-50 transition-colors">
+            <i class="fa-solid fa-filter mr-2"></i> Filter Customers
+        </button>
+        <button class="bg-green-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-green-700 transition-colors">
+            <i class="fa-solid fa-plus mr-2"></i> Add New Customer
+        </button>
+    </div>
+</div>
+
+<div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+        <h3 class="text-lg font-bold text-gray-900">Customer List</h3>
+        <div class="flex space-x-4">
+            <button class="text-sm font-medium text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-download mr-2 text-xs"></i> Export</button>
+        </div>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-gray-600">
+            <thead class="text-xs font-bold text-gray-400 uppercase bg-gray-50">
+                <tr>
+                    <th class="px-6 py-4">Customer</th>
+                    <th class="px-6 py-4">Email</th>
+                    <th class="px-6 py-4">Total Orders</th>
+                    <th class="px-6 py-4">Total Spent</th>
+                    <th class="px-6 py-4">Last Order</th>
+                    <th class="px-6 py-4 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                @foreach (var customer in Model.Customers)
+                {
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-100 rounded-full mr-4 flex items-center justify-center text-gray-500 font-bold">
+                                    @customer.Name.Substring(0, 1)
+                                </div>
+                                <div class="font-bold text-gray-900">@customer.Name}</div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">@customer.Email</td>
+                        <td class="px-6 py-4 font-bold text-gray-900">@customer.TotalOrders</td>
+                        <td class="px-6 py-4 font-bold text-gray-900">@customer.TotalSpent.ToString("N0")đ</td>
+                        <td class="px-6 py-4">@customer.LastOrderDate.ToString("dd/MM/yyyy")</td>
+                        <td class="px-6 py-4 text-center">
+                            <button class="text-gray-400 hover:text-gray-700">
+                                <i class="fa-solid fa-envelope"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-gray-700 ml-3">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between bg-gray-50">
+        <p class="text-sm text-gray-500">Showing 1-@Model.Customers.Count of 890 customers</p>
+        <div class="flex items-center space-x-1">
+            <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+            <button class="w-8 h-8 flex items-center justify-center bg-green-600 text-white font-medium rounded text-sm">1</button>
+            <button class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-200 font-medium rounded text-sm">2</button>
+            <button class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-200 font-medium rounded text-sm">3</button>
+            <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+        </div>
+    </div>
+</div>
