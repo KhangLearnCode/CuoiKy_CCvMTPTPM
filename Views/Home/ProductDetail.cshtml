@@ -11,17 +11,56 @@
     <!-- Main Content Card -->
     <div class="bg-gray-200 rounded-lg p-6 md:p-10 flex flex-col md:flex-row gap-10">
         <!-- Left: Images -->
-        <div class="w-full md:w-2/5 space-y-4">
-            <div class="bg-white rounded-lg p-8 flex items-center justify-center aspect-square shadow-inner">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800" alt="Product Image" class="max-h-full max-w-full object-contain">
-            </div>
-            <div class="grid grid-cols-4 gap-3">
-                @for (int i = 0; i < 4; i++)
-                {
-                    <div class="bg-white rounded-md p-2 flex items-center justify-center aspect-square cursor-pointer border-2 @(i == 0 ? "border-orange-500" : "border-transparent hover:border-gray-300") transition-all">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=200" alt="Thumbnail" class="max-h-full max-w-full object-contain">
+        <div class="w-full md:w-2/5 space-y-6">
+            <div class="bg-white rounded-[2.5rem] p-8 relative shadow-sm border-[6px] border-[#1a4a3a] outline outline-2 outline-[#1a4a3a] outline-offset-[-12px]">
+                <!-- Brand Logo Top -->
+                <div class="absolute top-6 left-1/2 -translate-x-1/2 bg-[#1a4a3a] px-6 py-2 rounded shadow-md">
+                    <span class="text-white font-serif text-xs font-bold tracking-[0.2em]">PARFUMERIE</span>
+                </div>
+                
+                <div class="flex items-center justify-center pt-10 h-[300px] gap-4">
+                    <!-- Main Bottle -->
+                    <div class="flex-1 flex justify-center">
+                        <img src="https://parfumerie.vn/uploads/products/jean-paul-gaultier-le-male-le-parfum-edp-intense.jpg" alt="Main Bottle" class="max-h-[250px] object-contain">
                     </div>
-                }
+                    <!-- Decant Bottle -->
+                    <div class="flex justify-center">
+                        <img src="https://parfumerie.vn/uploads/products/nuoc-hoa-chiet-jean-paul-gaultier-le-male-le-parfum-edp-intense.jpg" alt="Decant" class="h-44 object-contain">
+                    </div>
+                    <!-- Size Options List -->
+                    <div class="flex flex-col justify-center space-y-4 pr-4">
+                        <div class="space-y-4 text-[11px] font-bold italic text-[#1a4a3a]">
+                            <div class="flex items-center gap-2 whitespace-nowrap">
+                                <i class="fa-solid fa-circle-check text-green-600 text-sm"></i> 10ml
+                            </div>
+                            <div class="flex items-center gap-2 whitespace-nowrap">
+                                <i class="fa-solid fa-circle-check text-green-600 text-sm"></i> 20ml
+                            </div>
+                            <div class="flex items-center gap-2 whitespace-nowrap">
+                                <i class="fa-solid fa-circle-check text-green-600 text-sm"></i> 30ml
+                            </div>
+                            <div class="flex items-center gap-2 whitespace-nowrap">
+                                <i class="fa-solid fa-circle-check text-green-600 text-sm"></i> Fullbox
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="grid grid-cols-4 gap-4 px-2">
+                <div class="bg-white border border-black aspect-square p-1 flex items-center justify-center cursor-pointer hover:border-orange-500 transition-all">
+                    <img src="https://parfumerie.vn/uploads/products/jean-paul-gaultier-le-male-le-parfum-edp-intense.jpg" alt="Thumbnail 1" class="max-h-full max-w-full object-contain">
+                </div>
+                <div class="bg-white border border-black aspect-square p-1 flex items-center justify-center cursor-pointer hover:border-orange-500 transition-all">
+                    <img src="https://product.hstatic.net/1000340570/product/jean_paul_gaultier_le_male_le_parfum_edp_intense_1_866beec6df9440fc9df9909990909090_master.jpg" alt="Thumbnail 2" class="max-h-full max-w-full object-contain">
+                </div>
+                <div class="bg-white border border-black aspect-square p-1 flex items-center justify-center cursor-pointer hover:border-orange-500 transition-all">
+                    <img src="https://parfumerie.vn/uploads/products/jean-paul-gaultier-le-male-le-parfum-edp-intense-3.jpg" alt="Thumbnail 3" class="max-h-full max-w-full object-contain">
+                </div>
+                <div class="bg-white border border-black aspect-square p-1 flex items-center justify-center cursor-pointer hover:border-orange-500 transition-all">
+                    <img src="https://parfumerie.vn/uploads/products/jean-paul-gaultier-le-male-le-parfum-edp-intense-4.jpg" alt="Thumbnail 4" class="max-h-full max-w-full object-contain">
+                </div>
             </div>
         </div>
 
@@ -71,6 +110,227 @@
                 <button class="flex-1 bg-transparent border-2 border-green-500 text-green-600 hover:bg-green-50 font-bold py-4 rounded-lg transition-all">
                     Thêm vào giỏ
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scent Evaluation Section -->
+    <div class="mt-16 space-y-12">
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-8">Đánh giá mùi hương</h2>
+            
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <p class="text-[11px] font-bold text-gray-400 mb-8 uppercase tracking-[0.2em]">Phù hợp với</p>
+                
+                <div class="grid grid-cols-3 md:grid-cols-6 gap-8 mb-16">
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="text-gray-400 text-3xl"><i class="fa-solid fa-snowflake"></i></div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Mùa đông</span>
+                        <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-blue-500 w-3/4 shadow-sm"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="text-gray-400 text-3xl"><i class="fa-solid fa-leaf"></i></div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Mùa xuân</span>
+                        <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-green-500 w-1/2 shadow-sm"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="text-gray-400 text-3xl"><i class="fa-solid fa-umbrella"></i></div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Mùa hè</span>
+                        <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-orange-500 w-1/4 shadow-sm"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="text-gray-400 text-3xl"><i class="fa-solid fa-leaf rotate-90"></i></div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Mùa thu</span>
+                        <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#D4AF37] w-2/3 shadow-sm"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="text-gray-400 text-3xl"><i class="fa-solid fa-sun"></i></div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Ban ngày</span>
+                        <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-yellow-500 w-3/4 shadow-sm"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="text-gray-400 text-3xl"><i class="fa-solid fa-moon"></i></div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Ban đêm</span>
+                        <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-indigo-950 w-full shadow-sm"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                    <!-- Longevity Chart -->
+                    <div class="space-y-8">
+                        <div class="flex flex-col items-center space-y-3 mb-6">
+                            <div class="w-12 h-12 rounded-full border-2 border-[#8B0000] flex items-center justify-center text-[#8B0000] shadow-sm">
+                                <i class="fa-solid fa-rotate-right text-lg"></i>
+                            </div>
+                            <span class="text-xs font-bold text-[#8B0000] uppercase tracking-[0.3em]">Lưu hương</span>
+                        </div>
+                        <div class="space-y-4 px-4">
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-500 font-medium">1-3 tiếng</span>
+                                <span class="w-10 text-gray-400 text-right mr-4">45</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[15%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-500 font-medium">4-6 tiếng</span>
+                                <span class="w-10 text-gray-400 text-right mr-4">131</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[35%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-900 font-bold">6-8 tiếng</span>
+                                <span class="w-10 text-gray-500 font-bold text-right mr-4">380</span>
+                                <div class="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[85%] transition-all duration-1000 shadow-md"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-500 font-medium">8-12 tiếng</span>
+                                <span class="w-10 text-gray-400 text-right mr-4">89</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[25%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-500 font-medium">hơn 12 tiếng</span>
+                                <span class="w-10 text-gray-400 text-right mr-4">18</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[10%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sillage Chart -->
+                    <div class="space-y-8">
+                        <div class="flex flex-col items-center space-y-3 mb-6">
+                            <div class="w-12 h-12 rounded-full border-2 border-[#8B0000] flex items-center justify-center text-[#8B0000] shadow-sm">
+                                <i class="fa-solid fa-user text-lg"></i>
+                            </div>
+                            <span class="text-xs font-bold text-[#8B0000] uppercase tracking-[0.3em]">Tỏa hương</span>
+                        </div>
+                        <div class="space-y-4 px-4">
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-500 font-medium">Kém</span>
+                                <span class="w-10 text-gray-400 text-right mr-4">45</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[15%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-900 font-bold">Thoang thoảng</span>
+                                <span class="w-10 text-gray-500 font-bold text-right mr-4">380</span>
+                                <div class="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[85%] transition-all duration-1000 shadow-md"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-500 font-medium">Ổn</span>
+                                <span class="w-10 text-gray-400 text-right mr-4">89</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[25%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-500 font-medium">Gần</span>
+                                <span class="w-10 text-gray-400 text-right mr-4">18</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[10%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-[11px] group">
+                                <span class="w-24 text-gray-500 font-medium">Rất lâu</span>
+                                <span class="w-10 text-gray-400 text-right mr-4">18</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-[#8B0000] w-[10%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations Section -->
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-8">Gợi ý mùi hương tương tự cho phong cách của bạn</h2>
+            
+            <div class="bg-gray-200 rounded-[3rem] p-10 md:p-14">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product 1 -->
+                    <div class="bg-white p-6 flex flex-col items-center justify-between aspect-square shadow-sm hover:shadow-md transition-all group">
+                        <div class="flex-1 flex items-center justify-center p-2">
+                            <img src="https://product.hstatic.net/1000340570/product/creed_aventus_for_men_edp_1_866beec6df9440fc9df9909990909090_master.jpg" alt="Perfume 1" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="text-center space-y-1 py-2">
+                            <h3 class="text-[10px] font-bold text-gray-800 uppercase tracking-tight line-clamp-1">Creed Aventus For Men EDP</h3>
+                            <p class="text-[9px] text-gray-500 font-bold">750.000đ - 7.550.000đ</p>
+                        </div>
+                        <div class="flex justify-center items-center gap-6 w-full pt-2">
+                            <button class="text-gray-800 hover:text-orange-500 transition-colors"><i class="fa-solid fa-cart-shopping text-lg"></i></button>
+                            <button class="text-gray-800 hover:text-red-500 transition-colors"><i class="fa-regular fa-heart text-lg"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="bg-white p-6 flex flex-col items-center justify-between aspect-square shadow-sm hover:shadow-md transition-all group">
+                        <div class="flex-1 flex items-center justify-center p-2">
+                            <img src="https://product.hstatic.net/1000340570/product/chanel_bleu_de_chanel_edp_1_866beec6df9440fc9df9909990909090_master.jpg" alt="Perfume 2" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="text-center space-y-1 py-2">
+                            <h3 class="text-[10px] font-bold text-gray-800 uppercase tracking-tight line-clamp-1">Chanel Bleu de Chanel EDP</h3>
+                            <p class="text-[9px] text-gray-500 font-bold">425.000đ - 4.550.000đ</p>
+                        </div>
+                        <div class="flex justify-center items-center gap-6 w-full pt-2">
+                            <button class="text-gray-800 hover:text-orange-500 transition-colors"><i class="fa-solid fa-cart-shopping text-lg"></i></button>
+                            <button class="text-gray-800 hover:text-red-500 transition-colors"><i class="fa-regular fa-heart text-lg"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="bg-white p-6 flex flex-col items-center justify-between aspect-square shadow-sm hover:shadow-md transition-all group">
+                        <div class="flex-1 flex items-center justify-center p-2">
+                            <img src="https://product.hstatic.net/1000340570/product/dior_sauvage_edp_1_866beec6df9440fc9df9909990909090_master.jpg" alt="Perfume 3" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="text-center space-y-1 py-2">
+                            <h3 class="text-[10px] font-bold text-gray-800 uppercase tracking-tight line-clamp-1">Dior Sauvage EDP</h3>
+                            <p class="text-[9px] text-gray-500 font-bold">325.000đ - 3.850.000đ</p>
+                        </div>
+                        <div class="flex justify-center items-center gap-6 w-full pt-2">
+                            <button class="text-gray-800 hover:text-orange-500 transition-colors"><i class="fa-solid fa-cart-shopping text-lg"></i></button>
+                            <button class="text-gray-800 hover:text-red-500 transition-colors"><i class="fa-regular fa-heart text-lg"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="bg-white p-6 flex flex-col items-center justify-between aspect-square shadow-sm hover:shadow-md transition-all group">
+                        <div class="flex-1 flex items-center justify-center p-2">
+                            <img src="https://product.hstatic.net/1000340570/product/versace_eros_for_men_edt_1_866beec6df9440fc9df9909990909090_master.jpg" alt="Perfume 4" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="text-center space-y-1 py-2">
+                            <h3 class="text-[10px] font-bold text-gray-800 uppercase tracking-tight line-clamp-1">Versace Eros For Men EDT</h3>
+                            <p class="text-[9px] text-gray-500 font-bold">225.000đ - 2.850.000đ</p>
+                        </div>
+                        <div class="flex justify-center items-center gap-6 w-full pt-2">
+                            <button class="text-gray-800 hover:text-orange-500 transition-colors"><i class="fa-solid fa-cart-shopping text-lg"></i></button>
+                            <button class="text-gray-800 hover:text-red-500 transition-colors"><i class="fa-regular fa-heart text-lg"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
